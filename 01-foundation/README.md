@@ -45,3 +45,42 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+
+## Section 2
+> Temas puntuales
+
+En esta sección tendremos nuestra introducción oficial a Astro, lo que incluye una presentación y luego ya entraremos a crear nuestro hola mundo y demás piezas importantes.
+
+> Puntualmente veremos
+
+Sintaxis - 
+Componentes de astro -
+Layouts -
+Estilos -
+Navegación entre pantallas -
+Estructura -  
+Props -
+Página 404 - 
+Introducción View Transitions - 
+Sitio a producción estático -
+Despliegue a la web -
+
+---
+
+## Section 3
+> Temas puntuales
+
+Esta es una sección muy interesante porque aprenderemos a crear páginas por adelantado para nuestro sitio web estático, esto incluye funcionalidades como:
+
+-  Animaciones entre pantallas
+- Generación de 151 páginas en tiempo de construcción
+- Lectura de argumentos dinámicos por URL
+- Name Transitions
+- Estilo condicional
+- Path alias de TypeScript
+- Interfaces y tipado
+- Metatags básicas para SEO (title, description e image)
+- Pruebas a la hora de compartir los enlaces por redes sociales
+
+---
