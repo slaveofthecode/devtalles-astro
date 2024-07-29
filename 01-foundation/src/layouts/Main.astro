@@ -1,0 +1,46 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import Navigation from "../components/Navigation.astro";
+
+import "../styles/global.css";
+
+// const home = "Gustavo Lopez";
+interface Props {
+  title: string;
+  age?: number;
+  isActive?: boolean;
+}
+
+const { title, age, isActive } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro - {title}</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <Navigation />
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<!--  
+- is:global -> is a special directive that allows you to write global styles
+that apply to the entire document. 
+- is:inline -> is a special directive that
+allows you to write styles that apply to the current component only. 
+- is:raw -> is a special directive that allows you to write raw CSS that will be
+injected into the document as-is.
+-->
+<style is:global>
+  h1 {
+    color: red;
+  }
+</style>

@@ -1,0 +1,37 @@
+---
+import Main from "../layouts/Main.astro";
+
+// Server Only
+const name = "Gustavo Lopez";
+console.log("Hello from Server!");
+---
+
+<Main title="Home Page">
+  <h1>{name}</h1>
+  <main>
+    <p>Current moment: {new Date().toLocaleTimeString()}</p>
+    <p id="current-time">Real current moment:</p>
+  </main>
+
+  <footer>
+    <span>Year 2023</span>
+  </footer>
+
+  <!-- script -->
+  <script>
+    // Client Only
+    console.log("Hello from Astro!");
+
+    const year: number = new Date().getFullYear();
+
+    const $footerSpan = document.querySelector(
+      "footer > span"
+    ) as HTMLSpanElement;
+    $footerSpan.textContent = `Year ${year}`;
+
+    const $realCurrentMoment = document.querySelector(
+      "#current-time"
+    ) as HTMLParagraphElement;
+    $realCurrentMoment.textContent += ` ${new Date().toLocaleTimeString()}`;
+  </script>
+</Main>
