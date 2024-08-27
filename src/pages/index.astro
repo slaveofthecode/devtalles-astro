@@ -1,7 +1,39 @@
 ---
+// all this part is server codes
 import MainLayout from "../layouts/MainLayout.astro";
+import type { PokemonListResponse } from "../types/pokemon-list.response";
+
+const urlAPI = "https://pokeapi.co/api/v2/pokemon";
+
+const getAPI = async () => {
+  const response = await fetch(urlAPI);
+
+  const data = (await response.json()) as PokemonListResponse;
+
+  return data;
+};
+
+const data = await getAPI();
+
+// console.log("RESULT", data);
 ---
 
 <MainLayout title="Vamos peine">
-  <h1 class="text-3xl text-blue-500">Astro .devtalles</h1>
+  <!-- <h1 class="text-3xl text-blue-500">Astro .devtalles</h1> -->
+  <h1 class="text-3xl">
+    Pokemon List (<b class="text-2xl">{data.results.length}</b>)
+  </h1>
+  <hr />
+  <ul>
+    {
+      data.results.map((item) => {
+        return (
+          <li>
+            <strong>{item.name}</strong>
+            <small>{item.url}</small>
+          </li>
+        );
+      })
+    }
+  </ul>
 </MainLayout>
