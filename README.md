@@ -47,7 +47,14 @@ All commands are run from the root of the project, from a terminal:
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
 
 
-___
 
-# API
+=======================================
+
+# Devtalles Astro
+
+## API
 [pokemon API](https://pokeapi.co/)
+
+## Deployed in
+[Netlify](https://www.netlify.com/)
+- [Link to the deployed site](https://devtalles-astro.netlify.app/)
