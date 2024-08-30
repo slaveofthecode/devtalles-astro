@@ -1,5 +1,6 @@
 ---
 import type { GetStaticPaths } from "astro";
+import type { PokemonListResponse } from "../../types/pokemon-list.response";
 import MainLayout from "../../layouts/MainLayout.astro";
 import Pokemon from "../../components/Pokemon.astro";
 
@@ -7,30 +8,25 @@ import Pokemon from "../../components/Pokemon.astro";
 //   name: string;
 // }
 
-export const getStaticPaths = (() => {
-  return [
-    {
-      params: { name: "bulbasaur" },
-      props: {
-        name: "bulbasaur",
-        url: "https://pokeapi.co/api/v2/pokemon/1/",
-      },
-    },
-    {
-      params: { name: "ivysaur" },
-      props: {
-        name: "ivysaur",
-        url: "https://pokeapi.co/api/v2/pokemon/2/",
-      },
-    },
-    {
-      params: { name: "venusaur" },
-      props: {
-        name: "venusaur",
-        url: "https://pokeapi.co/api/v2/pokemon/3/",
-      },
-    },
-  ];
+export const getStaticPaths = (async () => {
+  async function getPokemonList(limit = 151) {
+    const urlApi = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`;
+    const response = await fetch(urlApi);
+    const data = (await response.json()) as PokemonListResponse;
+
+    return data.results;
+  }
+
+  const pokemonList = await getPokemonList();
+
+  const result = pokemonList.map((pokemon) => {
+    return {
+      params: { name: pokemon.name },
+      props: { ...pokemon },
+    };
+  });
+
+  return result;
 }) satisfies GetStaticPaths;
 
 const { name } = Astro.params;
@@ -43,10 +39,10 @@ const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pok
 
 <MainLayout title={name ?? ""}>
   <section class="mt-10 mx-10 flex flex-col justify-center items-center">
-    <div class="self-start flex flex-col ps-[4rem] w-[85%] relative">
+    <div class="w-[100%] relative">
       <a href="/">Come back</a>
       <h1 class="text-5xl capitalize mb-2">{name}</h1>
-      <small class="text-gray-500 right-0 bottom-1 absolute">{id}</small>
+      <span class="text-gray-400 right-2 bottom-2 absolute">[ {id} ]</span>
     </div>
     <Pokemon name={name} url={url} />
 

@@ -17,7 +17,7 @@ const getAPI = async () => {
 const data = await getAPI();
 ---
 
-<MainLayout title="Vamos peine">
+<MainLayout title="Astro - Pokemons">
   <h1 class="text-3xl py-3">
     Pokemon List (<b class="text-2xl">{data.results.length}</b>)
   </h1>
@@ -26,8 +26,8 @@ const data = await getAPI();
 
   <section
     aria-label="Pokemons List"
-    class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-4 my-4"
+    class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-4 my-4"
   >
-    {data.results.map((item) => <Pokemon {...item} />)}
+    {data.results.map((item) => <Pokemon {...item} useBlur={true} />)}
   </section>
 </MainLayout>
