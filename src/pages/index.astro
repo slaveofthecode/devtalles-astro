@@ -26,8 +26,8 @@ const data = await getAPI();
 
   <section
     aria-label="Pokemons List"
-    class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-4 my-4"
+    class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-4 my-4"
   >
-    {data.results.map((item) => <Pokemon {...item} useBlur={true} />)}
+    {data.results.map((item) => <Pokemon {...item} />)}
   </section>
 </MainLayout>

@@ -42,9 +42,8 @@ const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pok
     <div class="w-[100%] relative">
       <a href="/">Come back</a>
       <h1 class="text-5xl capitalize mb-2">{name}</h1>
-      <span class="text-gray-400 right-2 bottom-2 absolute">[ {id} ]</span>
     </div>
-    <Pokemon name={name} url={url} />
+    <Pokemon name={name} url={url} isBig />
 
     <audio controls class="mt-5">
       <source src={audioSrc} />

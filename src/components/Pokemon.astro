@@ -2,26 +2,37 @@
 interface Props {
   name: string;
   url: string;
-  useBlur?: boolean;
+  isBig?: boolean;
 }
 
-const { name, url, useBlur = false } = Astro.props as Props;
+const { name, url, isBig = false } = Astro.props as Props;
 const id = url.split("/").at(-2);
 
 const srcImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${id}.png`;
 ---
 
 <a
-  class="d-flex justify-center align-middle text-center p-3
-  border-gray-600 rounded border"
+  class:list={[
+    "flex flex-col justify-center items-center text-center p-3 gap-4",
+    !isBig && "border-gray-600 rounded border",
+  ]}
   href=`/pokemon/${name}`
 >
   <img
     src={srcImage}
-    class=`cursor-pointer ${useBlur && "blur-sm opacity-60"}
-    transition-all duration-200 delay-0 ease-in
-    hover:opacity-100 hover:blur-0`
+    class:list={[
+      "cursor-pointer",
+      isBig
+        ? "w-26 h-26"
+        : "w-16 h-16 blur-sm opacity-60 transition-all duration-200 delay-0 ease-in hover:opacity-100 hover:blur-0",
+    ]}
     alt={name}
   />
-  <span class="text-slate-200 tracking-[.25rem] capitalize">{name}</span>
+  <span
+    class=""
+    class:list={["text-slate-200 capitalize", isBig && "text-3xl"]}
+  >
+    {!isBig && "#" + id}
+    {name}
+  </span>
 </a>
