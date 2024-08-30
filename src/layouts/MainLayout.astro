@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from "astro:transitions";
+
 interface Props {
   title: string;
 }
@@ -13,8 +15,20 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
   <body class="bg-slate-800 text-slate-100 m-auto max-w-4xl p-5">
     <slot />
+
+    <hr class="mt-6 mb-4" />
+    <ul>
+      <li>
+        <a
+          target="_blank"
+          href="https://docs.astro.build/en/guides/view-transitions/#adding-view-transitions-to-a-page"
+          >ViewTransitions</a
+        >
+      </li>
+    </ul>
   </body>
 </html>

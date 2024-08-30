@@ -14,17 +14,18 @@ const srcImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
 <a
   class:list={[
     "flex flex-col justify-center items-center text-center p-3 gap-4",
-    !isBig && "border-gray-600 rounded border",
+    !isBig && "border-gray-600 border rounded-lg transition-all",
   ]}
   href=`/pokemon/${name}`
 >
   <img
+    transition:name=`${name}-'image'`
     src={srcImage}
     class:list={[
       "cursor-pointer",
       isBig
         ? "w-26 h-26"
-        : "w-16 h-16 blur-sm opacity-60 transition-all duration-200 delay-0 ease-in hover:opacity-100 hover:blur-0",
+        : "w-16 h-16 blur-sm opacity-60 hover:opacity-100 hover:blur-0 duration-200 delay-0 ease-in",
     ]}
     alt={name}
   />
