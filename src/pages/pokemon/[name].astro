@@ -1,21 +1,64 @@
 ---
 import type { GetStaticPaths } from "astro";
 import MainLayout from "../../layouts/MainLayout.astro";
+import Pokemon from "../../components/Pokemon.astro";
 
 interface Params {
   name: string;
 }
-const { name } = Astro.params;
 
 export const getStaticPaths = (() => {
   return [
-    { params: { name: "gus" } },
-    { params: { name: "migodita" } },
-    { params: { name: "fa" } },
+    {
+      params: { name: "bulbasaur" },
+      props: {
+        name: "bulbasaur",
+        url: "https://pokeapi.co/api/v2/pokemon/1/",
+      },
+    },
+    {
+      params: { name: "ivysaur" },
+      props: {
+        name: "ivysaur",
+        url: "https://pokeapi.co/api/v2/pokemon/2/",
+      },
+    },
+    {
+      params: { name: "venusaur" },
+      props: {
+        name: "venusaur",
+        url: "https://pokeapi.co/api/v2/pokemon/3/",
+      },
+    },
   ];
 }) satisfies GetStaticPaths;
+
+const { name } = Astro.params;
+const { url } = Astro.props;
+
+const id = url.split("/").at(-2);
+
+const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`;
 ---
 
 <MainLayout title={name ?? ""}>
-  <h1 class="text-3xl">hola</h1>
+  <section class="mt-10 mx-10 flex flex-col justify-center items-center">
+    <div class="self-start flex flex-col ps-[4rem] w-[85%] relative">
+      <a href="/">Come back</a>
+      <h1 class="text-5xl capitalize mb-2">{name}</h1>
+      <small class="text-gray-500 right-0 bottom-1 absolute">{id}</small>
+    </div>
+    <Pokemon name={name} url={url} />
+
+    <audio controls class="mt-5">
+      <source src={audioSrc} />
+      Your browser does not support the audio element.
+    </audio>
+  </section>
 </MainLayout>
+
+<style>
+  a {
+    @apply hover:underline text-blue-500;
+  }
+</style>
